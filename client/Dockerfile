@@ -1,0 +1,35 @@
+#docker file on client 
+# 1. Build a node base Image 
+FROM node:22 AS build
+
+# 2 the run starts from for the next command
+WORKDIR /app
+
+# 3.Copy package.json and package-lock.json for the client
+COPY package*.json ./
+
+# 4.Install dependencies needed for react
+RUN npm install
+
+# 5.Copy all React code
+COPY . .
+
+# Allow overriding API/WS endpoints at build time
+ARG VITE_API_URL=http://localhost:5000
+ARG VITE_WS_URL=ws://localhost:3001/yjs
+ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_WS_URL=${VITE_WS_URL}
+
+# 6. Build the app THE RUN COMMAND:Runs the build script from package.json
+RUN npm run build
+
+# 7. Production stage using Nginx:server [our server]
+#Starts a new lightweight image based on Nginx.
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# ✅ Copy our custom Nginx config-- fixes the reload
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+#expose port to connnect to
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

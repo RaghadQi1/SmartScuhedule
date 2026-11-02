@@ -1,0 +1,38 @@
+{
+  "name": "smart-schedule-",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Renadyousef/Smart-schedule-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Renadyousef/Smart-schedule-/issues"
+  },
+  "homepage": "https://github.com/Renadyousef/Smart-schedule-#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "bcrypt": "^6.0.0",
+    "bootstrap-icons": "^1.13.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsondiffpatch": "^0.7.3",
+    "jsonwebtoken": "^9.0.2",
+    "openai": "^6.0.0",
+    "pg": "^8.16.3",
+    "react-router-dom": "^7.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
